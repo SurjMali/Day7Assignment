@@ -1,0 +1,89 @@
+5. Take a range from 0 – 100, find the digits that are repeated twice like 33, 77,
+
+etc and store them in an array
+
+count=0
+array[count]=''
+for ((i=1;i<=100;i++))
+do
+        val=$(($i%11))                      //$(($i%10)) //$(($i%22)) //$(($i%33))
+        if [ $val -eq 0 ]
+        then
+            array[count]=$(($i))
+            ((count++))
+        fi
+done
+echo ${array[@]}
+
+
+count=0
+array[count]=''
+for ((i=1;i<=1000;i++))
+do
+        val=$(($i%111))
+        if [ $val -eq 0 ]
+        then
+            array[count]=$(($i))
+            ((count++))
+        fi
+done
+echo ${array[@]}
+
+
+1. Write a program in the following steps
+a. Generates 10 Random 3 Digit number.
+b. Store this random numbers into a array.
+c. Then find the 2nd largest and the 2nd smallest element without sorting the array.
+
+  GNU nano 6.2                        first.sh
+for ((i = 0; i <=10; i++)); do      ## fill array with random values
+    a[i]=$(($RANDOM % 899 + 100))
+done
+echo "${a[@]}"
+largest=${a[0]}
+smallest=${a[0]}
+for j in "${a[@]}"
+do
+if [[ "$j" -lt "$smallest" ]]
+then
+smallest="$j"
+fi
+if [[ "$j" -gt "$largest" ]]
+then
+largest="$j"
+fi
+done
+echo "largest num:" $largest
+echo "smallest num:" $smallest
+
+
+
+
+
+4. Write a Program to show Sum of three Integer adds to ZERO
+array[0]=-1
+array[1]=3
+array[2]=-2
+#array[3]=6
+#array[4]=5
+echo ${array[@]}
+length=$((${#array[@]}))
+echo $len
+for ((i=0;i<$length;i++))
+do
+    first=$((${array[i]}))
+    for ((j=$(($i+1));j<$length;j++))
+    do
+        second=$((${array[j]}))
+        for ((k=$(($j+1));k<$length;k++))
+        do
+            third=$((${array[k]}))
+            sum=$(($first+$second+$third))
+            if [ $sum -eq 0 ]
+            then
+                echo "sum of " $first $second $third "is equal to Zero. "
+            fi
+        done
+    done
+done
+
